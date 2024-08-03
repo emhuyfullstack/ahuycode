@@ -1,0 +1,141 @@
+/* style.css */
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', sans-serif;
+    height: 100vh;
+    background: linear-gradient(135deg, #f06, #4a90e2);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.scene {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 800px;
+}
+
+.container {
+    text-align: center;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    width: 400px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    margin: 20px 0;
+}
+
+.container:hover {
+    transform: rotateY(10deg);
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    color: #333;
+    transform: translateZ(20px);
+}
+
+.birthday-message {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #666;
+    line-height: 1.6;
+    transform: translateZ(10px);
+}
+
+.gift-container {
+    position: relative;
+    display: inline-block;
+    transform: translateZ(5px);
+}
+
+.gift-button {
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 15px 30px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateZ(0);
+}
+
+.gift-button:hover {
+    background-color: #f06;
+    transform: translateZ(15px) scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ticket-image {
+    width: 250px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: none;
+    transform: translateZ(10px);
+}
+
+.hidden {
+    display: none;
+}
+
+audio {
+    display: none;
+}
+
+footer {
+    margin-top: 20px;
+}
+
+.signature {
+    font-family: 'Pacifico', cursive;
+    font-size: 18px;
+    color: #fff;
+    opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 26px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .birthday-message {
+        font-size: 16px;
+    }
+
+    .gift-button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .ticket-image {
+        width: 200px;
+    }
+
+    .signature {
+        font-size: 16px;
+    }
+}
