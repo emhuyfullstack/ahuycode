@@ -8,13 +8,14 @@ Wishing every day brings you closer to your dreams and that you continue to grow
 
 let index = 0;
 const typingSpeed = 100; // milliseconds
-const delayBeforeTyping = 3000; // 3 seconds delay before typing starts
+let typingInterval = null;
 
 function typeWriter() {
     if (index < message.length) {
         document.getElementById("message").innerHTML += message.charAt(index);
         index++;
-        setTimeout(typeWriter, typingSpeed);
+    } else {
+        clearInterval(typingInterval); // Stop typing when done
     }
 }
 
@@ -23,32 +24,38 @@ window.onload = () => {
     const birthdaySong = document.getElementById("birthdaySong");
     const giftButton = document.getElementById("giftButton");
     const ticketImage = document.getElementById("ticketImage");
+    const messageElement = document.getElementById("message");
 
-    // Start typing animation
-    typeWriter();
-
-    // Unmute and play both sounds after a delay for the typing effect
-    setTimeout(() => {
-        typingSound.muted = false;
-        birthdaySong.muted = false;
-        typingSound.play();
-        birthdaySong.play();
-    }, delayBeforeTyping);
-
-    // Reveal ticket on button click
     giftButton.addEventListener('click', () => {
-        // Toggle the visibility of the ticket image
-        ticketImage.classList.toggle('hidden');
-        ticketImage.style.display = ticketImage.classList.contains('hidden') ? 'none' : 'block';
-    });
-
-    // Unmute audio on body click to handle autoplay restrictions
-    document.body.addEventListener('click', () => {
-        if (typingSound.paused || birthdaySong.paused) {
+        if (typingInterval) {
+            // If typing is active, reset everything
+            clearInterval(typingInterval); // Stop typing animation
+            typingSound.pause();
+            birthdaySong.pause();
+            typingSound.currentTime = 0;
+            birthdaySong.currentTime = 0;
+            index = 0;
+            messageElement.innerHTML = '🎈 Happy Birthday! 🎉';
+            ticketImage.classList.add('hidden');
+            ticketImage.style.display = 'none';
+            typingInterval = null; // Reset interval
+        } else {
+            // Start typing animation and play sounds
             typingSound.muted = false;
             birthdaySong.muted = false;
             typingSound.play();
             birthdaySong.play();
+            typingInterval = setInterval(typeWriter, typingSpeed);
+            ticketImage.classList.remove('hidden');
+            ticketImage.style.display = 'block';
+        }
+    });
+
+    // Unmute audio on body click to handle autoplay restrictions if needed
+    document.body.addEventListener('click', () => {
+        if (typingSound.paused || birthdaySong.paused) {
+            typingSound.muted = false;
+            birthdaySong.muted = false;
         }
     });
 };
