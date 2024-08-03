@@ -10,49 +10,54 @@ Wishing you a magical birthday filled with all your heart desires. 🎊🥳
 `;
 
 let index = 0;
-const typingSpeed = 100; // milliseconds
-const delayBeforeTyping = 3000; // 3 seconds delay before typing starts
+const typingDuration = 18000; // Total typing duration in milliseconds (18 seconds)
+const typingSpeed = typingDuration / message.length; // Calculate typing speed
 
 function typeWriter() {
     if (index < message.length) {
         document.getElementById("message").innerHTML += message.charAt(index);
         index++;
         setTimeout(typeWriter, typingSpeed);
+    } else {
+        // Show the button after typing animation is complete
+        document.getElementById("nextButton").classList.remove('hidden');
     }
+}
+
+function showSlide(currentSlide, nextSlide) {
+    currentSlide.classList.remove('active');
+    currentSlide.classList.add('hidden');
+    nextSlide.classList.remove('hidden');
+    nextSlide.classList.add('active');
 }
 
 window.onload = () => {
     const typingSound = document.getElementById("typingSound");
     const birthdaySong = document.getElementById("birthdaySong");
-    const giftButton = document.getElementById("giftButton");
-    const ticketImage = document.getElementById("ticketImage");
+    const startButton = document.getElementById("startButton");
+    const nextButton = document.getElementById("nextButton");
+    const slide1 = document.getElementById("slide1");
+    const slide2 = document.getElementById("slide2");
+    const slide3 = document.getElementById("slide3");
 
-    // Start typing animation and play sounds on load
-    typeWriter();
-
-    // Play typing sound after a delay
-    setTimeout(() => {
-        typingSound.muted = false;
-        typingSound.play();
-    }, delayBeforeTyping);
-
-    // Enable sounds when user interacts with the button
-    giftButton.addEventListener('click', () => {
+    // Start music and show slide 2 on start button click
+    startButton.addEventListener('click', () => {
         birthdaySong.muted = false;
+        typingSound.muted = false;
         birthdaySong.play();
+        typingSound.play();
 
-        // Reveal ticket image when gift button is clicked
-        ticketImage.classList.toggle('hidden');
-        if (!ticketImage.classList.contains('hidden')) {
-            ticketImage.style.display = 'block';
-        } else {
-            ticketImage.style.display = 'none';
-        }
+        showSlide(slide1, slide2);
+
+        // Start typing animation
+        typeWriter();
     });
 
-    // Unmute audio by clicking on the body (if necessary)
-    document.body.addEventListener('click', () => {
-        typingSound.muted = false;
-        birthdaySong.muted = false;
+    // Show slide 3 on next button click
+    nextButton.addEventListener('click', () => {
+        showSlide(slide2, slide3);
     });
+
+    // Initialize slide 1 as active
+    slide1.classList.add('active');
 };
