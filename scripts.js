@@ -27,17 +27,20 @@ window.onload = () => {
     // Start typing animation and play sounds on load
     typeWriter();
 
+    // Unmute and play both sounds on load
+    typingSound.muted = false;
+    birthdaySong.muted = false;
+
     // Play typing sound after a delay
     setTimeout(() => {
-        typingSound.muted = false;
         typingSound.play();
     }, delayBeforeTyping);
 
+    // Play birthday song immediately
+    birthdaySong.play();
+
     // Enable sounds when user interacts with the button
     giftButton.addEventListener('click', () => {
-        birthdaySong.muted = false;
-        birthdaySong.play();
-
         // Reveal ticket image when gift button is clicked
         ticketImage.classList.toggle('hidden');
         if (!ticketImage.classList.contains('hidden')) {

@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Helvetica Neue', sans-serif;
-    height: 100vh;
+    min-height: 100vh; /* Use min-height to ensure full viewport coverage */
     background: linear-gradient(135deg, #f06, #4a90e2);
     overflow-y: auto;
     display: flex;
@@ -26,7 +26,7 @@ body {
 .container {
     text-align: center;
     padding: 30px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 192, 203, 0.9);
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     max-width: 90%;
@@ -65,13 +65,13 @@ h1 {
 }
 
 .gift-button {
-    background-color: #4a90e2;
+    background: linear-gradient(135deg, #ff8c00, #ff0080);
     color: #fff;
     border: none;
     border-radius: 25px;
-    padding: 15px 30px;
+    padding: 20px 40px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -79,7 +79,7 @@ h1 {
 }
 
 .gift-button:hover {
-    background-color: #f06;
+    background: linear-gradient(135deg, #f06, #4a90e2);
     transform: translateZ(15px) scale(1.1);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
@@ -103,6 +103,8 @@ audio {
 
 footer {
     margin-top: 20px;
+    width: 100%; /* Ensure footer takes the full width */
+    text-align: center; /* Center the footer text */
 }
 
 .signature {
