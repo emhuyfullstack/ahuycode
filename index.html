@@ -2,29 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Birthday Surprise for Truc Van</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Helvetica+Neue:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="scene">
-        <div class="slide active" id="slide1">
-            <button id="startButton" class="slide-button">Bấm vô đây 😆</button>
+        <div class="container">
+            <h1 id="message">🎈 Happy Birthday! 🎉</h1>
+            <p class="birthday-message">
+                07 - Aug - 2024 🎁✨
+            </p>
+            <div class="gift-container">
+                <button id="giftButton" class="gift-button">Bài đặt sinh nhật 🙄</button>
+                <img id="ticketImage" src="ticket.jpg" alt="Movie Ticket" class="ticket-image hidden">
+            </div>
+            <audio id="birthdaySong" src="birthday_song.mp3" loop muted></audio>
+            <audio id="typingSound" src="typing_sound.mp3" loop muted></audio>
         </div>
-
-        <div class="slide" id="slide2">
-            <h1 id="message"></h1>
-            <button id="nextButton" class="slide-button hidden">Bài đặt sinh nhật 🙄</button>
-        </div>
-
-        <div class="slide" id="slide3">
-            <h2 class="note">Mời mấy chị đi coi phim chill chill 🎬✨</h2>
-            <img id="ticketImage" src="ticket.jpg" alt="Movie Ticket" class="ticket-image">
-        </div>
-
-        <audio id="birthdaySong" src="birthday_song.mp3" loop></audio>
-        <audio id="typingSound" src="typing_sound.mp3" loop></audio>
     </div>
     <footer>
         <p class="signature">emhuyfullstack</p>

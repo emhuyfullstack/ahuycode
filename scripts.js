@@ -1,63 +1,55 @@
 // scripts.js
 const message = `
-🎈🎉 Happy Birthday Truc Van! 🎉🎈
 
-May this day bring you endless joy and laughter. As you step into another wonderful year, may your dreams take flight and your happiness soar high. Celebrate with those you love, and enjoy the little surprises life has to offer. 🎂💖
+Sister Truc Zan ngusi xaugai sinh nhat vui ve nhe 🌟
 
-Remember, the best is yet to come. Enjoy every moment of today, as you unwrap the blessings that await you. 🌟
-
-Wishing you a magical birthday filled with all your heart desires. 🎊🥳
+Wishing every day brings you closer to your dreams and that you continue to grow more beautiful and confident with each passing year. May everything go smoothly and be just as you wish. 🎊🥳
 `;
 
 let index = 0;
-const typingDuration = 18000; // Total typing duration in milliseconds (18 seconds)
-const typingSpeed = typingDuration / message.length; // Calculate typing speed
+const typingSpeed = 100; // milliseconds
+const delayBeforeTyping = 3000; // 3 seconds delay before typing starts
 
 function typeWriter() {
     if (index < message.length) {
         document.getElementById("message").innerHTML += message.charAt(index);
         index++;
         setTimeout(typeWriter, typingSpeed);
-    } else {
-        // Show the button after typing animation is complete
-        document.getElementById("nextButton").classList.remove('hidden');
     }
-}
-
-function showSlide(currentSlide, nextSlide) {
-    currentSlide.classList.remove('active');
-    currentSlide.classList.add('hidden');
-    nextSlide.classList.remove('hidden');
-    nextSlide.classList.add('active');
 }
 
 window.onload = () => {
     const typingSound = document.getElementById("typingSound");
     const birthdaySong = document.getElementById("birthdaySong");
-    const startButton = document.getElementById("startButton");
-    const nextButton = document.getElementById("nextButton");
-    const slide1 = document.getElementById("slide1");
-    const slide2 = document.getElementById("slide2");
-    const slide3 = document.getElementById("slide3");
+    const giftButton = document.getElementById("giftButton");
+    const ticketImage = document.getElementById("ticketImage");
 
-    // Start music and show slide 2 on start button click
-    startButton.addEventListener('click', () => {
-        birthdaySong.muted = false;
+    // Start typing animation and play sounds on load
+    typeWriter();
+
+    // Play typing sound after a delay
+    setTimeout(() => {
         typingSound.muted = false;
-        birthdaySong.play();
         typingSound.play();
+    }, delayBeforeTyping);
 
-        showSlide(slide1, slide2);
+    // Enable sounds when user interacts with the button
+    giftButton.addEventListener('click', () => {
+        birthdaySong.muted = false;
+        birthdaySong.play();
 
-        // Start typing animation
-        typeWriter();
+        // Reveal ticket image when gift button is clicked
+        ticketImage.classList.toggle('hidden');
+        if (!ticketImage.classList.contains('hidden')) {
+            ticketImage.style.display = 'block';
+        } else {
+            ticketImage.style.display = 'none';
+        }
     });
 
-    // Show slide 3 on next button click
-    nextButton.addEventListener('click', () => {
-        showSlide(slide2, slide3);
+    // Unmute audio by clicking on the body (if necessary)
+    document.body.addEventListener('click', () => {
+        typingSound.muted = false;
+        birthdaySong.muted = false;
     });
-
-    // Initialize slide 1 as active
-    slide1.classList.add('active');
 };
