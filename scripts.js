@@ -24,35 +24,31 @@ window.onload = () => {
     const giftButton = document.getElementById("giftButton");
     const ticketImage = document.getElementById("ticketImage");
 
-    // Start typing animation and play sounds on load
+    // Start typing animation
     typeWriter();
 
-    // Unmute and play both sounds on load
-    typingSound.muted = false;
-    birthdaySong.muted = false;
-
-    // Play typing sound after a delay
+    // Unmute and play both sounds after a delay for the typing effect
     setTimeout(() => {
-        typingSound.play();
-    }, delayBeforeTyping);
-
-    // Play birthday song immediately
-    birthdaySong.play();
-
-    // Enable sounds when user interacts with the button
-    giftButton.addEventListener('click', () => {
-        // Reveal ticket image when gift button is clicked
-        ticketImage.classList.toggle('hidden');
-        if (!ticketImage.classList.contains('hidden')) {
-            ticketImage.style.display = 'block';
-        } else {
-            ticketImage.style.display = 'none';
-        }
-    });
-
-    // Unmute audio by clicking on the body (if necessary)
-    document.body.addEventListener('click', () => {
         typingSound.muted = false;
         birthdaySong.muted = false;
+        typingSound.play();
+        birthdaySong.play();
+    }, delayBeforeTyping);
+
+    // Reveal ticket on button click
+    giftButton.addEventListener('click', () => {
+        // Toggle the visibility of the ticket image
+        ticketImage.classList.toggle('hidden');
+        ticketImage.style.display = ticketImage.classList.contains('hidden') ? 'none' : 'block';
+    });
+
+    // Unmute audio on body click to handle autoplay restrictions
+    document.body.addEventListener('click', () => {
+        if (typingSound.paused || birthdaySong.paused) {
+            typingSound.muted = false;
+            birthdaySong.muted = false;
+            typingSound.play();
+            birthdaySong.play();
+        }
     });
 };
