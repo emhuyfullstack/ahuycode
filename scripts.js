@@ -23,7 +23,8 @@ window.onload = () => {
     const typingSound = document.getElementById("typingSound");
     const birthdaySong = document.getElementById("birthdaySong");
     const giftButton = document.getElementById("giftButton");
-    const ticketImage = document.getElementById("ticketImage");
+    const ticketImage1 = document.getElementById("ticketImage1");
+    const ticketImage2 = document.getElementById("ticketImage2");
     const messageElement = document.getElementById("message");
 
     giftButton.addEventListener('click', () => {
@@ -36,8 +37,10 @@ window.onload = () => {
             birthdaySong.currentTime = 0;
             index = 0;
             messageElement.innerHTML = '🎈 Happy Birthday! 🎉';
-            ticketImage.classList.add('hidden');
-            ticketImage.style.display = 'none';
+            ticketImage1.classList.add('hidden');
+            ticketImage2.classList.add('hidden');
+            ticketImage1.style.display = 'none';
+            ticketImage2.style.display = 'none';
             typingInterval = null; // Reset interval
         } else {
             // Start typing animation and play sounds
@@ -46,8 +49,10 @@ window.onload = () => {
             typingSound.play();
             birthdaySong.play();
             typingInterval = setInterval(typeWriter, typingSpeed);
-            ticketImage.classList.remove('hidden');
-            ticketImage.style.display = 'block';
+            ticketImage1.classList.remove('hidden');
+            ticketImage2.classList.remove('hidden');
+            ticketImage1.style.display = 'block';
+            ticketImage2.style.display = 'block';
         }
     });
 
